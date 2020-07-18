@@ -1,0 +1,28 @@
+--- 
+development: 
+  adapter: postgresql
+  database: api_service_development
+  encoding: unicode
+  host: 127.0.0.1
+  password: postgres
+  username: postgres
+  port: 5432
+  pool: 10
+test: 
+  adapter: postgresql
+  database: api_service_test
+  encoding: unicode
+  host: "127.0.0.1"
+  password: postgres
+  pool: 5
+  port: 5432
+  username: postgres
+production: 
+  adapter: postgresql
+  encoding: unicode
+  pool: 5
+  port: 5432
+  host: <%= ENV['DATABASE_HOST'] %>
+  database: <%= ENV['DATABASE_NAME'] %>
+  username: <%= ENV['DATABASE_USER'] %>
+  password: <%= ENV['DATABASE_PASSWORD'] %>
