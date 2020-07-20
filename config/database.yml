@@ -14,9 +14,9 @@ test:
   encoding: unicode
   host: "127.0.0.1"
   password: postgres
+  username: postgres
   pool: 5
   port: 5432
-  username: postgres
 production: 
   adapter: postgresql
   encoding: unicode
