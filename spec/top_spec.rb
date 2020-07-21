@@ -12,10 +12,16 @@ describe '.ratings' do
   end
 
   context 'db has some posts' do
+    before do
+      create_list(:post, 5, title: 'title', content: 'content', avg_rating: 5)
+    end
     it 'return 3' do
       response = get url, { count: 3 }, headers: headers
       expect(response.status).to eql(200)
-      # expect(JSON.load(response.body)).to eql(response_body)
+      response_body = [{'title' => 'title', 'content' => 'content'},
+                       {'title' => 'title', 'content' => 'content'},
+                       {'title' => 'title', 'content' => 'content'}]
+      expect(JSON.load(response.body)).to eql(response_body)
     end
   end
 

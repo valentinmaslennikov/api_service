@@ -62,13 +62,10 @@ end
 # Получить топ N постов по среднему рейтингу.
 
 get '/top' do
-  puts params[:count]
-
   posts = Post.order('avg_rating DESC NULLS LAST')
               .limit(params[:count])
               .pluck(:title, :content)
               .map { |values| Hash[%i[title content].zip(values)] }
-  puts posts
   if posts.present?
     posts.to_json
   else
