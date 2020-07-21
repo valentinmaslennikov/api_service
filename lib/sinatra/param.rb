@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'sinatra/base'
 require 'sinatra/param/version'
 require 'date'
@@ -12,11 +14,11 @@ module FixParam
   def param(name, type, options = {})
     name = name.to_s
 
-    return unless params.member?(name) || options.has_key?(:default) || options[:required]
+    return unless params.member?(name) || options.key?(:default) || options[:required]
 
     begin
       params[name] = coerce(params[name], type, options)
-      if params[name].nil? && options.has_key?(:default)
+      if params[name].nil? && options.key?(:default)
         params[name] = (options[:default].call if options[:default].respond_to?(:call)) || options[:default]
       end
       params[name] = options[:transform].to_proc.call(params[name]) if params[name] && options[:transform]

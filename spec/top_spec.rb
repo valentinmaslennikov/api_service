@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require File.expand_path 'spec_helper.rb', __dir__
 
 describe '.ratings' do
@@ -18,9 +20,9 @@ describe '.ratings' do
     it 'return 3' do
       response = get url, { count: 3 }, headers: headers
       expect(response.status).to eql(200)
-      response_body = [{'title' => 'title', 'content' => 'content'},
-                       {'title' => 'title', 'content' => 'content'},
-                       {'title' => 'title', 'content' => 'content'}]
+      response_body = [{ 'title' => 'title', 'content' => 'content' },
+                       { 'title' => 'title', 'content' => 'content' },
+                       { 'title' => 'title', 'content' => 'content' }]
       expect(JSON.load(response.body)).to eql(response_body)
     end
   end

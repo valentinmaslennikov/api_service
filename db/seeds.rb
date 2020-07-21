@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'faker'
 require 'uri'
 require 'net/http'
@@ -16,7 +18,7 @@ ActiveRecord::Base.transaction do
 
   jobs = Queue.new
 
-  1.upto(186_108) do |i|
+  1.upto(200_001) do |i|
     jobs.push i
   end
 
@@ -29,7 +31,6 @@ ActiveRecord::Base.transaction do
         http = Net::HTTP.new(create_post.host, create_post.port)
         request = Net::HTTP::Post.new(create_post)
         request['Content-Type'] = 'application/json'
-        # request["Accept"] = "application/vnd.api+json"
         request.body = { title: title, content: content, ip: ips.sample, username: usernames.sample }.to_json
         response = http.request(request)
         post_id = JSON(response.read_body)['id']
@@ -38,11 +39,8 @@ ActiveRecord::Base.transaction do
         rand(0..5).times do
           http = Net::HTTP.new(create_rating.host, create_rating.port)
           request = Net::HTTP::Patch.new(create_rating)
-          request['Content-Type'] = 'application/vnd.api+json'
-          # request["Accept"] = "application/vnd.api+json"
-          # request.body = {value: rand(1..5).to_s, post_id: post_id.to_s}.to_json
-          form_data = [['value', rand(1..5).to_s], ['post_id', post_id.to_s]]
-          request.set_form form_data, 'multipart/form-data'
+          request['Content-Type'] = 'application/json'
+          request.body = { value: rand(1..5).to_s, post_id: post_id.to_s }.to_json
           response = http.request(request)
           puts response.read_body
         end

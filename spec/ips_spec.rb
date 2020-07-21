@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require File.expand_path 'spec_helper.rb', __dir__
 
 describe '.ratings' do
@@ -25,8 +27,8 @@ describe '.ratings' do
     it 'update ratings' do
       response = get url, headers: headers
       expect(response.status).to eql(200)
-      response_body = [{ 'ip_address' => @ip, 'usernames' => @users.map { |i| i.username } },
-                       { 'ip_address' => @ip_sec, 'usernames' => @users_sec.map { |i| i.username } }]
+      response_body = [{ 'ip_address' => @ip, 'usernames' => @users.map(&:username) },
+                       { 'ip_address' => @ip_sec, 'usernames' => @users_sec.map(&:username) }]
       expect(JSON.load(response.body)).to eql(response_body)
     end
   end

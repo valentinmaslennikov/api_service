@@ -1,4 +1,5 @@
-# server.rb
+# frozen_string_literal: true
+
 require 'sinatra'
 require 'sinatra/base'
 require 'sinatra/param'
@@ -76,7 +77,7 @@ end
 # Получить список айпи, с которых постило несколько разных авторов.
 
 get '/ips' do
-  SQL = <<~SQL.freeze
+  SQL = <<~SQL
     WITH temp_table AS (
     	SELECT connections.ip, COUNT(DISTINCT users.id) FROM connections 
     	LEFT OUTER JOIN users ON users.id = connections.user_id
