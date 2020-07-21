@@ -1,26 +1,25 @@
-require File.expand_path '../spec_helper.rb', __FILE__
+require File.expand_path 'spec_helper.rb', __dir__
 
-describe ".posts" do
+describe '.posts' do
   let(:url) { '/posts' }
 
   let(:params) do
     {
-        title: Faker::Hipster.sentence,
-        content: Faker::Hipster.paragraph,
-        username: Faker::Name.name,
-        ip: Faker::Internet.ip_v4_address
+      title: Faker::Hipster.sentence,
+      content: Faker::Hipster.paragraph,
+      username: Faker::Name.name,
+      ip: Faker::Internet.ip_v4_address
     }
   end
 
   let(:headers) do
     {
-       'CONTENT_TYPE' => 'application/vnd.api+json',
-       'ACCEPT' => 'application/vnd.api+json'
+      'CONTENT_TYPE' => 'application/vnd.api+json',
+      'ACCEPT' => 'application/vnd.api+json'
     }
   end
 
-
-  context "with correct params" do
+  context 'with correct params' do
     it 'creates post' do
       response = post url, params, headers: headers
       expect(response.status).to eql(200)
@@ -40,17 +39,17 @@ describe ".posts" do
     end
   end
 
-  context "with incorrect params" do
+  context 'with incorrect params' do
     it 'return 422' do
-   	  params[:ip] = '12345'
+      params[:ip] = '12345'
       response = post url, params, headers: headers
       expect(response.status).to eql(422)
     end
   end
 
-  context "without some required params" do
+  context 'without some required params' do
     it 'creates post' do
-   	  params.delete(:ip)
+      params.delete(:ip)
       response = post url, params, headers: headers
       expect(response.status).to eql(422)
     end

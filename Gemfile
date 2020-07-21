@@ -2,29 +2,30 @@ source 'https://rubygems.org'
 
 ruby '2.7.0'
 
-gem 'sinatra'
-gem 'puma'
-gem 'pg'
-gem 'sinatra-cross_origin'
-gem 'sinatra-activerecord'
 gem 'activerecord'
-gem "activesupport"
-gem 'json'
+gem 'activesupport'
 gem 'faker'
-gem 'require_all'
-gem "sinatra-param", require: "sinatra/param"
+gem 'json'
+gem 'pg'
+gem 'puma'
 gem 'rack-contrib'
+gem 'require_all'
+gem 'sinatra'
+gem 'sinatra-activerecord'
 gem 'sinatra-contrib'
-gem 'byebug'
-#gem 'composite_primary_keys'
+gem 'sinatra-cross_origin'
+gem 'sinatra-param', require: 'sinatra/param'
+# gem 'composite_primary_keys'
 
 group :development do
+  gem 'byebug'
+  gem 'rubocop', require: false
   gem 'shotgun'
 end
 
 group :test do
-  gem 'rack-test'
-  gem 'rspec'
   gem 'database_cleaner'
   gem 'factory_bot'
+  gem 'rack-test'
+  gem 'rspec'
 end

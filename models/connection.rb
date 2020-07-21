@@ -1,3 +1,3 @@
-class Connection < ActiveRecord::Base	
-	belongs_to :user
+class Connection < ActiveRecord::Base
+  belongs_to :user
 end
