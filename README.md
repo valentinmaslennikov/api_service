@@ -29,10 +29,10 @@ curl -w "@curl-format" -o /dev/null  --location --request GET '0.0.0.0:8080/top?
  time_starttransfer:  0,783322s
                     ----------
          time_total:  0,783367s
-
+```
+```
 curl -w "@curl-format" -o /dev/null  --location --request GET '0.0.0.0:8080/top?count=1000
-```
-```
+
     time_namelookup:  0,000027s
        time_connect:  0,000960s
     time_appconnect:  0,000000s
@@ -44,7 +44,6 @@ curl -w "@curl-format" -o /dev/null  --location --request GET '0.0.0.0:8080/top?
 ```
 ```
  curl -w "@curl-format" -o /dev/null  --location --request GET '0.0.0.0:8080/ips'
-
 
     time_namelookup:  0,000050s
        time_connect:  0,001329s
